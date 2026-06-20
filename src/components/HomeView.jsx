@@ -72,28 +72,27 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
       <div className="block">
         <h2>Быстрая помощь (2 мин)</h2>
 
-  <div className="quick-row">
-  {quickTools.map((t) => (
-    <button
-      key={t.id}
-      className="quick-item"
-      onClick={() => {
-        if (t.id === "breath") {
-          onOpenTool("breath");   // дыхание
-        } else if (t.id === "ground") {
-          onOpenTool("ground");   // заземление
-        } else {
-          onSendToChat(`Хочу выполнить технику: ${t.title}`);
-        }
-      }}
-    >
-      <span className="quick-icon">{t.icon}</span>
-      <span>{t.title}</span>
-    </button>
-  ))}
-</div>
-
-
+        <div className="quick-row">
+          {quickTools.map((t) => (
+            <button
+              key={t.id}
+              className="quick-item"
+              onClick={() => {
+                if (t.id === "breath") {
+                  onOpenTool("breath");
+                } else if (t.id === "ground") {
+                  onOpenTool("ground");
+                } else {
+                  onSendToChat(`Хочу выполнить технику: ${t.title}`);
+                }
+              }}
+            >
+              <span className="quick-icon">{t.icon}</span>
+              <span>{t.title}</span>
+            </button>
+          ))}
+        </div>
+      </div>   {/* ← ЭТОТ ЗАКРЫВАЮЩИЙ DIV У ТЕБЯ БЫЛ ОТСУТСТВУЮЩИЙ */}
 
       {/* Tools */}
       <div className="block">
@@ -112,6 +111,7 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
           ))}
         </div>
       </div>
+
     </div>
   );
 }
