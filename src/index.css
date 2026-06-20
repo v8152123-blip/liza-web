@@ -1,0 +1,59 @@
+/* Базовые настройки */
+:root {
+  --bg: #f2f2f7;
+  --card-bg: #ffffff;
+  --accent: #4776E6;
+  --accent-end: #8E54E9;
+  --text-main: #000000;
+  --text-sec: #8e8e93;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-main);
+  -webkit-tap-highlight-color: transparent; /* Убирает "мигание" при нажатии в ТГ */
+}
+
+/* Контейнер приложения */
+#root {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100vh;
+}
+
+/* Карточки как в iOS */
+.card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Кнопки */
+.action-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-end));
+  color: white;
+  border: none;
+  padding: 16px;
+  width: 100%;
+  border-radius: 18px;
+  font-weight: 600;
+  font-size: 17px;
+  transition: transform 0.2s;
+}
+
+.action-btn:active {
+  transform: scale(0.98);
+}
+
+/* Сетка настроения */
+.mood-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
