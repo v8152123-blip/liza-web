@@ -10,8 +10,9 @@ const TabBar = ({ activeTab, setActiveTab }) => {
   ];
 
   return (
-    <div className="bg-white/80 backdrop-blur-md border-t border-gray-200 px-6 py-3 pb-8">
-      <div className="flex justify-between items-center max-w-sm mx-auto">
+    // Добавили чуть больше высоты и более мягкий размытый фон
+    <div className="fixed bottom-0 left-0 right-0 bg-[#F9F9F9]/80 backdrop-blur-2xl border-t border-black/5 pb-safe pt-2">
+      <div className="flex justify-around items-center max-w-md mx-auto h-16">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -19,21 +20,20 @@ const TabBar = ({ activeTab, setActiveTab }) => {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center gap-1 transition-colors ${
-                isActive ? 'text-blue-500' : 'text-gray-400 hover:text-gray-500'
+              onClick={() => {
+                // Добавляем тактильный отклик для iOS
+                window.Telegram?.WebApp?.HapticFeedback?.selectionChanged();
+                setActiveTab(tab.id);
+              }}
+              className={`flex flex-col items-center gap-1 transition-all duration-300 ${
+                isActive ? 'text-[#007AFF]' : 'text-gray-400'
               }`}
             >
-              <div className="relative">
-                <Icon className={`w-6 h-6 ${isActive ? 'fill-current' : ''}`} />
-                {isActive && (
-                  <motion.div 
-                    layoutId="activeTab"
-                    className="absolute -top-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-blue-500 rounded-full"
-                  />
-                )}
-              </div>
-              <span className="text-[10px] font-medium">{tab.label}</span>
+              <Icon 
+                className={`w-6 h-6 transition-transform duration-300 ${isActive ? 'scale-110' : 'scale-100'}`} 
+                strokeWidth={isActive ? 2.5 : 2}
+              />
+              <span className="text-[10px] font-semibold tracking-wide">{tab.label}</span>
             </button>
           );
         })}

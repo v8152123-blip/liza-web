@@ -1,41 +1,47 @@
 /* Базовые настройки */
 :root {
-  --bg: #f2f2f7;
-  --card-bg: #ffffff;
-  --accent: #4776E6;
-  --accent-end: #8E54E9;
+  --bg: #F2F2F7;
+  --card-bg: #FFFFFF;
+  --accent: #007AFF; /* Официальный Apple Blue */
   --text-main: #000000;
-  --text-sec: #8e8e93;
+  --text-sec: #8E8E93;
+  /* Добавим поддержку безопасных зон для iPhone */
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
 }
 
 body {
   margin: 0;
   background-color: var(--bg);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--text-main);
-  -webkit-tap-highlight-color: transparent; /* Убирает "мигание" при нажатии в ТГ */
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none; /* Убирает "резиновую" прокрутку браузера */
 }
 
 /* Контейнер приложения */
 #root {
+  width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  padding: 16px;
   min-height: 100vh;
+  padding-bottom: calc(80px + var(--sab)); /* Отступ для таббара */
 }
 
-/* Карточки как в iOS */
+/* Карточки iOS стиля */
 .card {
   background: var(--card-bg);
   border-radius: 24px;
   padding: 20px;
   margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  /* Мягкая тень, характерная для iOS */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+  border: 0.5px solid rgba(0,0,0,0.05);
 }
 
 /* Кнопки */
 .action-btn {
-  background: linear-gradient(135deg, var(--accent), var(--accent-end));
+  background: var(--accent);
   color: white;
   border: none;
   padding: 16px;
@@ -43,17 +49,23 @@ body {
   border-radius: 18px;
   font-weight: 600;
   font-size: 17px;
-  transition: transform 0.2s;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .action-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
+  opacity: 0.9;
 }
 
 /* Сетка настроения */
 .mood-grid {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
   margin-top: 15px;
 }
 
+/* Утилита для безопасного отступа снизу (пригодится в TabBar) */
+.pb-safe {
+  padding-bottom: var(--sab);
+}
