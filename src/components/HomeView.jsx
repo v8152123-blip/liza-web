@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./HomeView.css";
 
-export default function HomeView({ onSendToChat }) {
+export default function HomeView({ onSendToChat, onOpenTool }) {
   const moods = ["😊", "😐", "😔", "😤", "😰"];
   const [selectedMood, setSelectedMood] = useState(null);
 
@@ -77,7 +77,13 @@ export default function HomeView({ onSendToChat }) {
             <button
               key={t.id}
               className="quick-item"
-              onClick={() => onSendToChat(`Хочу выполнить технику: ${t.title}`)}
+              onClick={() => {
+                if (t.id === "breath") {
+                  onOpenTool("breath");   // ← ЗАПУСКАЕМ ДЫХАНИЕ
+                } else {
+                  onSendToChat(`Хочу выполнить технику: ${t.title}`);
+                }
+              }}
             >
               <span className="quick-icon">{t.icon}</span>
               <span>{t.title}</span>
