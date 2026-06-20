@@ -1,6 +1,5 @@
 import React from 'react';
 import { Home, MessageCircle, BarChart2 } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const TabBar = ({ activeTab, setActiveTab }) => {
   const tabs = [
@@ -10,9 +9,8 @@ const TabBar = ({ activeTab, setActiveTab }) => {
   ];
 
   return (
-    // Добавили чуть больше высоты и более мягкий размытый фон
-    <div className="fixed bottom-0 left-0 right-0 bg-[#F9F9F9]/80 backdrop-blur-2xl border-t border-black/5 pb-safe pt-2">
-      <div className="flex justify-around items-center max-w-md mx-auto h-16">
+    <div className="fixed bottom-0 left-0 right-0 bg-[#F9F9F9]/80 backdrop-blur-2xl border-t border-black/10 pb-[env(safe-area-inset-bottom)] pt-2 z-50">
+      <div className="flex justify-around items-center max-w-md mx-auto h-[48px]">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -21,19 +19,18 @@ const TabBar = ({ activeTab, setActiveTab }) => {
             <button
               key={tab.id}
               onClick={() => {
-                // Добавляем тактильный отклик для iOS
                 window.Telegram?.WebApp?.HapticFeedback?.selectionChanged();
                 setActiveTab(tab.id);
               }}
-              className={`flex flex-col items-center gap-1 transition-all duration-300 ${
+              className={`flex flex-col items-center justify-center w-full h-full transition-colors duration-200 ${
                 isActive ? 'text-[#007AFF]' : 'text-gray-400'
               }`}
             >
               <Icon 
-                className={`w-6 h-6 transition-transform duration-300 ${isActive ? 'scale-110' : 'scale-100'}`} 
+                className="w-6 h-6 mb-0.5" 
                 strokeWidth={isActive ? 2.5 : 2}
               />
-              <span className="text-[10px] font-semibold tracking-wide">{tab.label}</span>
+              <span className="text-[10px] font-semibold">{tab.label}</span>
             </button>
           );
         })}
