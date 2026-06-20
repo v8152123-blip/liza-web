@@ -2,6 +2,8 @@ import { useState } from "react";
 import HomeView from "./components/HomeView";
 import ChatView from "./components/ChatView";
 import BreathingTool from "./components/tools/BreathingTool";
+import GroundingTool from "./components/tools/GroundingTool";
+
 
 export default function App() {
   const [messages, setMessages] = useState([]);
@@ -24,6 +26,17 @@ export default function App() {
           }}
         />
       )}
+
+      
+{activeTool === "ground" && (
+  <GroundingTool
+    onFinish={(msg) => {
+      if (msg) sendToChat(msg);
+      setActiveTool(null);
+    }}
+  />
+)}
+
 
       {/* Если инструмент НЕ открыт — показываем обычный интерфейс */}
       {activeTool === null && (
