@@ -11,7 +11,7 @@
 
 /* Принудительный сброс для всех элементов, чтобы никакой веб-хлам не мешал */
 * {
-  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -41,4 +41,15 @@ body {
 
 .animate-pulse-custom {
   animation: sparklePulse 1.4s ease-in-out infinite;
+}
+
+/* Жесткий класс для градиента AI, который не сможет перебить ни один фреймворк */
+.liza-gradient-text {
+  background: linear-gradient(135deg, #007AFF 0%, #6680FF 100%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  text-fill-color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  display: inline-block; /* Помогает браузеру правильно рассчитать границы градиента */
 }
