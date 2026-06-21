@@ -22,7 +22,6 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
     onSendToChat(text);
   };
 
-  // Цвета и иконки строго из ContentView.swift (SF Symbols заменены на аккуратный текст/emoji)
   const quickTools = [
     { id: "breath", title: "Дыхание", icon: "🌬", color: "text-[#007AFF] bg-[#007AFF]/10" },
     { id: "ground", title: "Заземление", icon: "👁", color: "text-[#FF9500] bg-[#FF9500]/10" },
@@ -37,8 +36,8 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
   ];
 
   return (
-    // Нативный системный фон iOS (.systemGroupedBackground)
-    <div className="min-h-screen bg-[#F2F2F7] pb-24 font-sans text-black select-none">
+    // ИСПРАВЛЕНО: Убран класс font-sans. Текст теперь напрямую наследует нативный SF Pro из body
+    <div className="min-h-screen bg-[#F2F2F7] pb-24 text-black select-none">
       
       {/* Большой нативный заголовок а-ля NavigationTitle (.large) */}
       <div className="pt-7 pb-2 px-4">
@@ -84,11 +83,10 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
         </button>
       </div>
 
-      {/* Секция: Быстрая помощь (1:1 аналог твоей ScrollView(.horizontal)) */}
+      {/* Секция: Быстрая помощь */}
       <div className="mb-6">
         <h2 className="text-[17px] font-semibold tracking-tight text-black mx-4 mb-3">Быстрая помощь (2 мин)</h2>
         
-        {/* Горизонтальный контейнер скролла без полосы прокрутки */}
         <div className="flex space-x-3 overflow-x-auto px-4 pb-1 scrollbar-none snap-x">
           {quickTools.map((t) => (
             <button
@@ -98,14 +96,13 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
                 if (t.id === "breath" || t.id === "ground") onOpenTool(t.id);
                 else onSendToChat(`Хочу выполнить технику: ${t.title}`);
               }}
-              // Фиксированная ширина w-[105px] и высота h-[110px] — строго как в твоем QuickHelpItem
               className="flex-shrink-0 w-[105px] h-[110px] snap-center flex flex-col items-center justify-center bg-white rounded-[20px] shadow-[0_1px_3px_rgba(0,0,0,0.04)] active:bg-[#F2F2F7] transition-colors"
             >
-              {/* Круглая подложка под иконку с 15% прозрачности цвета */}
               <div className={`w-[54px] h-[54px] rounded-full flex items-center justify-center text-2xl mb-2 ${t.color}`}>
                 {t.icon}
               </div>
-              <span className="text-[13px] font-bold text-[#1C1C1E] text-center px-1 line-clamp-1">
+              {/* font-bold заменен на более точный font-semibold для мелкого текста */}
+              <span className="text-[13px] font-semibold text-[#1C1C1E] text-center px-1 line-clamp-1">
                 {t.title}
               </span>
             </button>
@@ -113,11 +110,10 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
         </div>
       </div>
 
-      {/* Секция: Инструментарий (1:1 аналог твоего LazyVGrid в Swift) */}
+      {/* Секция: Инструментарий */}
       <div className="mx-4">
         <h2 className="text-[17px] font-semibold tracking-tight text-black mb-3">Инструментарий</h2>
 
-        {/* Ровная двухколоночная нативная сетка */}
         <div className="grid grid-cols-2 gap-3">
           {tools.map((t) => (
             <button
@@ -126,14 +122,12 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
                 window.Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
                 onSendToChat(`Запусти инструмент: ${t.title}`);
               }}
-              // Карточка инструмента высотой ровно 95px как в твоем ToolItem
               className="flex flex-col items-center justify-center bg-white rounded-[20px] p-3 h-[95px] shadow-[0_1px_3px_rgba(0,0,0,0.04)] active:bg-[#F2F2F7] transition-colors"
             >
-              {/* Скругленный квадрат под иконку инструмента */}
               <div className={`w-10 h-10 rounded-[12px] flex items-center justify-center text-xl mb-2 ${t.color}`}>
                 {t.icon}
               </div>
-              <span className="text-[14px] font-bold text-[#1C1C1E] text-center leading-tight">
+              <span className="text-[14px] font-semibold text-[#1C1C1E] text-center leading-tight">
                 {t.title}
               </span>
             </button>
@@ -144,4 +138,3 @@ export default function HomeView({ onSendToChat, onOpenTool }) {
     </div>
   );
 }
-
