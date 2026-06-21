@@ -7,8 +7,8 @@ export default function Splash({ onFinish }) {
   useEffect(() => {
     const t = setTimeout(() => {
       setVisible(false);
-      setTimeout(() => onFinish?.(), 400); // SwiftUI easeOut 0.4s
-    }, 3000); // 3 секунды как в оригинале
+      setTimeout(() => onFinish?.(), 400); // fade-out 0.4s
+    }, 8000); // длительность заставки
 
     return () => clearTimeout(t);
   }, [onFinish]);
@@ -24,11 +24,9 @@ export default function Splash({ onFinish }) {
             <span className="ai">AI</span>
           </div>
 
-          {/* Sparkles */}
+          {/* Одна ✨ */}
           <div className="sparkles-box">
             <Sparkle delay={0.0} scale={1.2} offset={{ x: 10, y: -15 }} />
-            <Sparkle delay={0.4} scale={0.6} offset={{ x: -5, y: 10 }} />
-            <Sparkle delay={0.8} scale={0.8} offset={{ x: 25, y: 15 }} />
           </div>
         </div>
 
