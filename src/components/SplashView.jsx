@@ -2,24 +2,23 @@ import { useEffect, useState } from "react";
 import "./Splash.css";
 
 export default function Splash({ onFinish }) {
-  const [visible, setVisible] = useState(true);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => {
-      setVisible(false);
+    const timer = setTimeout(() => {
+      setHidden(true);
 
       setTimeout(() => {
         onFinish?.();
-      }, 400); // fade-out
-    }, 3000); // как в SwiftUI
+      }, 400); // fade out
+    }, 8000); // как в SwiftUI
 
-    return () => clearTimeout(t);
+    return () => clearTimeout(timer);
   }, [onFinish]);
 
   return (
-    <div className={`splash-root ${visible ? "show" : "hide"}`}>
+    <div className={`splash-root ${hidden ? "hide" : ""}`}>
       <div className="splash-container">
-
         <div className="title-row">
           <div className="title-text">
             <span className="liza">Лиза</span>
@@ -28,21 +27,21 @@ export default function Splash({ onFinish }) {
 
           <div className="sparkles-box">
             <Sparkle
-              delay={0.0}
+              delay={0}
               scale={1.2}
-              offset={{ x: 10, y: -15 }}
+              offset={{ x: 8, y: -16 }}
             />
 
             <Sparkle
               delay={0.4}
               scale={0.6}
-              offset={{ x: -5, y: 10 }}
+              offset={{ x: -3, y: 12 }}
             />
 
             <Sparkle
               delay={0.8}
               scale={0.8}
-              offset={{ x: 25, y: 15 }}
+              offset={{ x: 24, y: 18 }}
             />
           </div>
         </div>
@@ -50,7 +49,6 @@ export default function Splash({ onFinish }) {
         <div className="subtitle">
           Твоя точка опоры всегда под рукой.
         </div>
-
       </div>
     </div>
   );
@@ -61,8 +59,8 @@ function Sparkle({ delay, scale, offset }) {
     <div
       className="sparkle-wrapper"
       style={{
-        left: `${offset.x}px`,
-        top: `${offset.y}px`
+        left: offset.x,
+        top: offset.y
       }}
     >
       <div
