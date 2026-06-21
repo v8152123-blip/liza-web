@@ -9,7 +9,7 @@
   scrollbar-width: none;
 }
 
-/* Принудительный сброс для всех элементов, чтобы никакой веб-хлам не мешал */
+/* Принудительный сброс для всех элементов под Inter (iOS стиль) */
 * {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -20,36 +20,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #F2F2F7;
+  background-color: #F2F2F7; /* Тот самый системный серый фон iOS */
   color: #000000;
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
-}
-
-/* Плавная бесконечная пульсация для искр в SplashView */
-@keyframes sparklePulse {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(0.85);
-  }
-  50% {
-    opacity: 1.0;
-    transform: scale(1.15);
-  }
-}
-
-.animate-pulse-custom {
-  animation: sparklePulse 1.4s ease-in-out infinite;
-}
-
-/* Жесткий класс для градиента AI, который не сможет перебить ни один фреймворк */
-.liza-gradient-text {
-  background: linear-gradient(135deg, #007AFF 0%, #6680FF 100%) !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  text-fill-color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important;
-  display: inline-block; /* Помогает браузеру правильно рассчитать границы градиента */
 }
