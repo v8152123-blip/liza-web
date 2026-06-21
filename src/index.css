@@ -9,7 +9,7 @@
   scrollbar-width: none;
 }
 
-/* Принудительный сброс для всех элементов в проекте, чтобы никакой веб-хлам не мешал */
+/* Принудительный сброс для всех элементов, чтобы никакой веб-хлам не мешал */
 * {
   font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
