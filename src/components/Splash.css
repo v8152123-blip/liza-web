@@ -1,103 +1,141 @@
-/* ====== ZStack background ====== */
+/* ===== Root ===== */
+
 .splash-root {
   position: fixed;
   inset: 0;
-  background: #ffffff !important;
+
+  background: #ffffff;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.4s ease-out;
+
   opacity: 1;
+  transition: opacity 0.4s ease-out;
+
+  z-index: 9999;
 }
 
 .splash-root.hide {
   opacity: 0;
 }
 
-/* ====== VStack(spacing: 10) ====== */
+/* ===== Container ===== */
+
 .splash-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* ближе subtitle */
+
+  gap: 14px;
 }
 
-/* ====== HStack(spacing: 10) ====== */
+/* ===== Title Row ===== */
+
 .title-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* ====== HStack(spacing: 8) ====== */
+/* ===== Text Block ===== */
+
 .title-text {
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 8px;
 }
 
-/* ====== Лиза (Inter Bold 700 Italic + улучшения) ====== */
-/* ====== Лиза (Inter Bold 700 без курсива + улучшения) ====== */
+/* ===== Лиза ===== */
+
 .liza {
+  font-family: "Inter", sans-serif;
   font-size: 48px;
   font-weight: 700;
-  font-family: 'Inter', sans-serif !important;
+  line-height: 1;
 
-  /* Делаем Inter плотнее и визуально дороже */
   letter-spacing: -0.5px;
-  text-shadow: 0 0 0.3px rgba(0,0,0,0.25);
 
-  color: #000000ce;
+  color: #000000;
 }
 
-/* ====== AI (Inter Bold 700 без курсива + улучшения + градиент) ====== */
+/* ===== AI ===== */
+
 .ai {
+  font-family: "Inter", sans-serif;
   font-size: 48px;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif !important;
+  font-weight: 900;
+  line-height: 1;
 
-  /* Плотность и сжатие */
   letter-spacing: -0.5px;
-  text-shadow: 0 0 0.3px rgba(0,0,0,0.25);
 
-  /* Градиент */
-  background: linear-gradient(135deg, #778cf7 0%, #654ef7 100%);
+  background: linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #667fff 100%
+  );
+
   background-clip: text;
   -webkit-background-clip: text;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 
   display: inline-block;
-  position: relative;
 }
 
-/* ====== Subtitle — ближе к заголовку ====== */
+/* ===== Subtitle ===== */
+
 .subtitle {
+  font-family: "Inter", sans-serif;
   font-size: 18px;
   font-weight: 400;
-  font-family: 'Inter', sans-serif !important;
-  color: rgba(60, 60, 67, 0.6);
+  font-style: italic;
+
+  color: rgba(60, 60, 67, 0.65);
+
   text-align: center;
+
+  max-width: 420px;
   padding: 0 40px;
-  margin-top: -4px; /* ближе */
 }
 
-/* ====== Sparkles — одна ✨ ====== */
+/* ===== Sparkles ===== */
+
 .sparkles-box {
   position: relative;
+
   width: 40px;
   height: 40px;
 }
 
-.sparkle {
+.sparkle-wrapper {
   position: absolute;
+}
+
+.sparkle {
   font-size: 24px;
-  color: #FFD60A;
+
   opacity: 0.6;
+
   animation: sparklePulse 1.2s ease-in-out infinite alternate;
+  transform-origin: center center;
+
+  will-change: transform, opacity;
 }
 
 @keyframes sparklePulse {
-  from { opacity: 0.6; transform: scale(1); }
-  to   { opacity: 1;   transform: scale(1.1); }
+  from {
+    opacity: 0.6;
+    transform: scale(
+      calc(var(--sparkle-scale, 1) * 0.8)
+    );
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(
+      calc(var(--sparkle-scale, 1) * 1.1)
+    );
+  }
 }

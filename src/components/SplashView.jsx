@@ -7,8 +7,11 @@ export default function Splash({ onFinish }) {
   useEffect(() => {
     const t = setTimeout(() => {
       setVisible(false);
-      setTimeout(() => onFinish?.(), 400); // fade-out 0.4s
-    }, 8000); // длительность заставки
+
+      setTimeout(() => {
+        onFinish?.();
+      }, 400); // fade-out
+    }, 3000); // как в SwiftUI
 
     return () => clearTimeout(t);
   }, [onFinish]);
@@ -17,20 +20,33 @@ export default function Splash({ onFinish }) {
     <div className={`splash-root ${visible ? "show" : "hide"}`}>
       <div className="splash-container">
 
-        {/* Заголовок */}
         <div className="title-row">
           <div className="title-text">
             <span className="liza">Лиза</span>
             <span className="ai">AI</span>
           </div>
 
-          {/* Одна ✨ */}
           <div className="sparkles-box">
-            <Sparkle delay={0.0} scale={1.2} offset={{ x: 10, y: -15 }} />
+            <Sparkle
+              delay={0.0}
+              scale={1.2}
+              offset={{ x: 10, y: -15 }}
+            />
+
+            <Sparkle
+              delay={0.4}
+              scale={0.6}
+              offset={{ x: -5, y: 10 }}
+            />
+
+            <Sparkle
+              delay={0.8}
+              scale={0.8}
+              offset={{ x: 25, y: 15 }}
+            />
           </div>
         </div>
 
-        {/* Подзаголовок */}
         <div className="subtitle">
           Твоя точка опоры всегда под рукой.
         </div>
@@ -43,13 +59,21 @@ export default function Splash({ onFinish }) {
 function Sparkle({ delay, scale, offset }) {
   return (
     <div
-      className="sparkle"
+      className="sparkle-wrapper"
       style={{
-        animationDelay: `${delay}s`,
-        transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`
+        left: `${offset.x}px`,
+        top: `${offset.y}px`
       }}
     >
-      ✨
+      <div
+        className="sparkle"
+        style={{
+          animationDelay: `${delay}s`,
+          "--sparkle-scale": scale
+        }}
+      >
+        ✨
+      </div>
     </div>
   );
 }
