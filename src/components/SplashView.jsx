@@ -8,7 +8,7 @@ export default function Splash({ onFinish }) {
     const t = setTimeout(() => {
       setVisible(false);
       setTimeout(() => onFinish?.(), 400); // SwiftUI easeOut 0.4s
-    }, 13000);
+    }, 3000); // 3 секунды как в оригинале
 
     return () => clearTimeout(t);
   }, [onFinish]);
@@ -16,12 +16,15 @@ export default function Splash({ onFinish }) {
   return (
     <div className={`splash-root ${visible ? "show" : "hide"}`}>
       <div className="splash-container">
+
+        {/* Заголовок */}
         <div className="title-row">
           <div className="title-text">
             <span className="liza">Лиза</span>
             <span className="ai">AI</span>
           </div>
 
+          {/* Sparkles */}
           <div className="sparkles-box">
             <Sparkle delay={0.0} scale={1.2} offset={{ x: 10, y: -15 }} />
             <Sparkle delay={0.4} scale={0.6} offset={{ x: -5, y: 10 }} />
@@ -29,10 +32,11 @@ export default function Splash({ onFinish }) {
           </div>
         </div>
 
-
+        {/* Подзаголовок */}
         <div className="subtitle">
           Твоя точка опоры всегда под рукой.
         </div>
+
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
-/* ZStack background */
+/* ====== ZStack background ====== */
 .splash-root {
   position: fixed;
   inset: 0;
-  background: var(--tg-theme-bg-color, #fff);
+  background: #ffffff !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
   opacity: 0;
 }
 
-/* VStack(spacing: 14) */
+/* ====== VStack(spacing: 14) ====== */
 .splash-container {
   display: flex;
   flex-direction: column;
@@ -22,31 +22,36 @@
   gap: 14px;
 }
 
-/* HStack(spacing: 10) */
+/* ====== HStack(spacing: 10) ====== */
 .title-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* HStack(spacing: 8) */
+/* ====== HStack(spacing: 8) ====== */
 .title-text {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
+/* ====== Лиза (Inter Bold 700) ====== */
+/* ====== Лиза (Inter ExtraBold 800) ====== */
 .liza {
   font-size: 48px;
-  font-weight: 700;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif !important;
+  color: #000;
 }
 
+/* ====== AI (Inter ExtraBold 800 + глубокий градиент) ====== */
 .ai {
   font-size: 48px;
-  font-weight: 900;
-  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif !important;
 
-  background: linear-gradient(135deg, #007aff, #4d8dff);
+  background: linear-gradient(135deg, #007AFF 0%, #0040DD 100%);
   background-clip: text;
   -webkit-background-clip: text;
 
@@ -55,65 +60,35 @@
 
   display: inline-block;
   position: relative;
-  z-index: 2;
-
-  text-shadow: 0 0 12px rgba(0, 122, 255, 0.35);
 }
 
 
-
-.title-text {
-  position: relative;
-  z-index: 2;
+/* ====== Subtitle (не курсив!) ====== */
+.subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif !important;
+  color: rgba(60, 60, 67, 0.6);
+  text-align: center;
+  padding: 0 40px;
 }
 
-
-
-
-
-
-
-.sparkle-emoji {
-  font-size: 32px;
-  margin-left: 4px;
-}
-
-
-
-
-/* Sparkles container */
+/* ====== Sparkles ====== */
 .sparkles-box {
   position: relative;
   width: 40px;
   height: 40px;
 }
 
-/* SparkleView */
 .sparkle {
   position: absolute;
   font-size: 24px;
-  color: #facc15;
+  color: #FFD60A;
   opacity: 0.6;
   animation: sparklePulse 1.2s ease-in-out infinite alternate;
 }
 
 @keyframes sparklePulse {
-  from {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-}
-
-/* Subtitle */
-.subtitle {
-  font-size: 18px;
-  opacity: 0.8;
-  font-style: italic;
-  text-align: center;
-  padding: 0 40px;
-  color: #666;
+  from { opacity: 0.6; transform: scale(1); }
+  to   { opacity: 1;   transform: scale(1.1); }
 }
